@@ -3,7 +3,10 @@ import { BiListPlus } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actionCreators/productActions";
+import {
+  addToCart,
+  removeFromCart,
+} from "../redux/actionCreators/productActions";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -35,7 +38,10 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="flex gap-2 mt-5">
         {pathname.includes("cart") && (
-          <button className="bg-red-500 rounded-full py-1 px-4 flex w-full justify-between text-white text-bold">
+          <button
+            className="bg-red-500 rounded-full py-1 px-4 flex w-full justify-between text-white text-bold"
+            onClick={() => dispatch(removeFromCart(product))}
+          >
             <p>Remove from cart</p>
             <AiFillDelete size={25} />
           </button>
